@@ -24,7 +24,7 @@
 #' @param county Character vector containing collect county or city
 #' @param locality Character vector containingcollect locality
 #' @param redlist If "yes" return only taxa in Portaria MMA 443/2014
-#' @param maxrecords Integer number to restrict number of records to return
+#' @param maxrecords Character vector to restrict number of records to return
 #'
 #' @return `data.frame()` with the records
 #' @export

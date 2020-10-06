@@ -25,9 +25,9 @@ This package uses CRIA *species*Link API v.0.1 beta ([CRIA](https://api.splink.o
 
 ## Installation
 
-You can install the released version of `splinkr` from [GitHub](https://github.org) with:
+You can install the released version of `splinkr` from [GitHub](https://github.org/cadubio/splinkr) with:
 
-    remotes::install_github("caduarte7/splinkr")
+    remotes::install_github("cadubio/splinkr")
 
 ## Usage
 
@@ -35,11 +35,10 @@ There are tree functions in package: `splinkr_datasets`*,* `splinkr_records` and
 
 ```{r load-pkg}
 # load package
-
 library(splinkr)
 ```
 
-### Function `splinkr_datasets( filter = NULL)`
+### Function `splinkr_datasets()`
 
 The function `splinkr_datasets()` with no arguments returns a `tibble` with all datasets of biological collections included in *species*Link network.
 
@@ -47,7 +46,7 @@ The function `splinkr_datasets()` with no arguments returns a `tibble` with all 
 splinkr_datasets()
 ```
 
-Pass one term to `filter` argument proceds a filtering in all variables (columns) of dataset returned by `splinkr_datasets()`
+Pass one term to `filter` argument filtering all variables (columns) of datasets.
 
 ```{r filter-one-term}
 splinkr_datasets(filter = "universidade")
@@ -71,19 +70,19 @@ splinkr_datasets(filter = c("herbário"))
 
 ### Function `splinkr_records()`
 
-This is the main function of the package. It provides a search engine for the more than 14 million speciesLink records. All arguments are by default `NULL`. Arguments `scientificName`, `barcode` and `catalogNumber` are mutualy excludent, on the other hand, one of the them can mixed with all other arguments. See list of arguments below. 
+This is the main function of the package. It provides a search engine for the more than 14 million *species*Link records. All arguments are `NULL` by default. Arguments `scientificName`, `barcode` and `catalogNumber` are mutualy excludent, on the other hand, one of the them can mixed with all other arguments. See list of arguments below. 
 
 | Argument | Options | Example |
 | ---------|-------------------|----------------------------------------------|
 | barcode  | character vector  | `c("NY00000001", "FPS00257", "FCM00096")` |
 | basisOfRecord | PreservedSpecimen, LivingSpecimen, FossilSpecimen, HumanObservation, MachineObservation, MaterialSample | c("PreservedSpecimen") |
 | collectionCode  |	character vector |	`c("FIOCRUZ-CEIOC", "UEC", "HUEFS")` |
-| catalogNumber	| character vector, embranco, nãobranco | 	`c("435643", "P234576")` |
+| catalogNumber	| character vector, embranco, nãobranco | 	`c("435643", "P234576", "embranco)` |
 | collector     |	collector name |	`c("Siqueira", "Almeida F")` |
 | collectorNumber |	character vector	| `c("125", "1897A")` |
-| yearCollected	| four-digits year	`c(1987, 1897, 2016)`|
+| yearCollected	| four-digits year	| `c(1887, 1897, 2000)`|
 | identifiedBy |	character vector	| `c("Siqueira CE")`|
-| yearIdentified | four-digits year |	`c(1887, 1997, 2015)`|
+| yearIdentified | four-digits year |	`c(1997, 2015)`|
 | kingdom	| character vector |	`c("Plantae", "Animalia", "Fungi")`|
 | phylum  |	character vector	| `c("Arthropoda", "Nematoda")` |
 | class	  | character vector	| `c("Reptilia", "Amphibia")`|
@@ -96,7 +95,7 @@ This is the main function of the package. It provides a search engine for the mo
 | stateProvince	| character vector |	`c("SP", "Santa Catarina", "MT")` |
 | county |	character vector |	`c("São José", "Anitápolis", "Rio Branco")` |
 | locality |	character vector	| `c("pedra branca", "fazendinha")` | 
-| maxRecords |	integer number | |	
+| maxRecords |	character vector | "5" |	
 | redlist |	NULL, yes | "yes"	|
 
 <!-- | notes |	character vector	| `c("floresta ombrófila", "flores magentas")` | -->
@@ -105,7 +104,6 @@ Code examples
 
 ```{r records example}
 # scientific name query 
-
 splinkr_records(scientificName = "Dyckia encholirioides var. rubra")
 
 
@@ -113,14 +111,13 @@ splinkr_records(scientificName = c("Acianthera saundersiana", "Anathallis microp
                 collector = "Siqueira")
 
 # Returns only type species
-
 splinkr_records(scientificName = c("Campylocentrum insulare", "Acianthera saundersiana"), collectionCode = "FLOR", typus = "yes")
 ```
 
 
 A large number of scientific names may be passed but the return may take a while, so it possible limit the number of records to return with `maxrecords` argument
 
-```{r records beware, eval=FALSE, include=FALSE}
+```{r records beware, eval=FALSE, include=TRUE}
 # Vector names
 nomes <- c("Abarema turbinata", "Comolia villosa", "Stylosanthes campestris", 
 "Vochysia floribunda", "Eugenia platyphylla", "Chaetocalyx acutifolia", 
@@ -139,45 +136,46 @@ splinkr_records(scientificName = nomes, maxrecords = "20")
 
 ### Function `splinkr_images()`
 
-This function can be used to view or download images from specimen records. According ([cria.org.br](http://www.cria.org.br/projetos)) there are more than three million records with images.
+The goal of this function is to provide a relatively quick way to view images of collections. According ([cria.org.br](http://www.cria.org.br/projetos)) there are more than three million records with images. Package [imager](https://CRAN.R-project.org/package=imager) is used to display this images. 
+
+In the future an integration with [imageJ](https://imagej.nih.gov/) may be provided to download and examine images from specimen records.
 ```{r imagecode, eval=FALSE, include=TRUE}
 # Display image by `imagecode`
-
-splinkr_images(imagecode = c("FLOR0037759", "UEC190851"))
-```
-
-```{r echo=FALSE, fig.align='center', fig.cap='...', out.width='60%'}
-knitr::include_graphics('images/imager-display.png')
-```
-
-```{r echo=FALSE, fig.align='center', fig.cap='...', out.width='60%'}
-knitr::include_graphics('images/imager-showimage.png')
-```
-
-```{r images names, eval=FALSE, include=TRUE}
+splinkr_images(imagecode = c("FLOR0037759", "UEC190851", "FURB53840"))
 
 # Display image by `scientificName`
-
 splinkr_images(scientificName = c("Spigelia insignis", "Anathallis kleinii"))
 ```
 
-# Combining functions
-```{r combining, eval=FALSE, include=TRUE}
+```{r echo=FALSE, fig.align='center', fig.cap='Example of display function from package imager', out.width='90%'}
+knitr::include_graphics('images/imager-display.png')
+```
 
+```{r echo=FALSE, fig.align='center', fig.cap='Example display function from package imager', out.width='60%'}
+knitr::include_graphics('images/imager-showimage.png')
+```
+
+
+# Combining functions
+
+The results of `splinkr_records` can be filtered and passed to `splinkr_images` to display images.
+```{r combining, eval=FALSE, include=TRUE}
+# Load package dplyr
 library(dplyr)
 
+# View images of genus 'Campylocentrum' from UPCB herbarium
 splinkr_records(scientificName = "Campylocentrum", collectionCode = "UPCB") %>% 
-  select(imagecode) %>% 
+  select(imagecode) %>% # filtering results
   splinkr_images(imagecode = .)
 ```
 
 # References
 
-## Data and image source
+## Data and image sources
 
-CRIA, Centro de Referência em Informação Ambiental. speciesLink API v.0.1 beta. https://api.splink.org.br/, accessed 5.10.2020.
+CRIA, Centro de Referência em Informação Ambiental. speciesLink API v.0.1 beta. ([api.splink.org.br](https://api.splink.org.br/help)), accessed 5.10.2020.
 
-INCT-HVFF, Herbário Virtual da Flora e dos Fungos. http://reflora-cdc.cria.org.br/inct/exsiccatae, accessed 5.10.2020.
+INCT-HVFF, Herbário Virtual da Flora e dos Fungos. ([reflora-cdc.cria.org.br/inct/exsiccatae](http://reflora-cdc.cria.org.br/inct/exsiccatae)), accessed 5.10.2020.
 
 
 ## Packages
@@ -196,8 +194,7 @@ Kirill Müller and Hadley Wickham (2020). `tibble`: Simple Data Frames. R packag
 Lionel Henry and Hadley Wickham (2020). `purrr`: Functional Programming Tools. R package version
   0.3.4. ([CRAN](https://CRAN.R-project.org/package=purrr))
   
-`R` Core Team (2020). `R`: A language and environment for statistical computing. R Foundation for
-  Statistical Computing, Vienna, Austria. ([R-project](https://www.R-project.org))
+`R` Core Team (2020). `R`: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ([R-project](https://www.R-project.org))
 
 Simon Barthelme (2020). `imager`: Image Processing Library Based on 'CImg'. R package version
   0.42.3. ([CRAN](https://CRAN.R-project.org/package=imager))

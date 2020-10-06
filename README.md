@@ -24,9 +24,9 @@ Installation
 ------------
 
 You can install the released version of `splinkr` from
-[GitHub](https://github.org) with:
+[GitHub](https://github.org/cadubio/splinkr) with:
 
-    remotes::install_github("caduarte7/splinkr")
+    remotes::install_github("cadubio/splinkr")
 
 Usage
 -----
@@ -38,7 +38,7 @@ There are tree functions in package: `splinkr_datasets`*,*
 
     library(splinkr)
 
-### Function `splinkr_datasets( filter = NULL)`
+### Function `splinkr_datasets()`
 
 The function `splinkr_datasets()` with no arguments returns a `tibble`
 with all datasets of biological collections included in *species*Link
@@ -61,8 +61,8 @@ network.
     #> # … with 519 more rows, and 4 more variables: numberOfRecords <chr>,
     #> #   location <chr>, keywords_pt <chr>, keywords_en <chr>
 
-Pass one term to `filter` argument proceds a filtering in all variables
-(columns) of dataset returned by `splinkr_datasets()`
+Pass one term to `filter` argument filtering all variables (columns) of
+datasets.
 
     splinkr_datasets(filter = "universidade")
     #> # A tibble: 326 x 9
@@ -136,8 +136,8 @@ diacritical signs.
 ### Function `splinkr_records()`
 
 This is the main function of the package. It provides a search engine
-for the more than 14 million speciesLink records. All arguments are by
-default `NULL`. Arguments `scientificName`, `barcode` and
+for the more than 14 million *species*Link records. All arguments are
+`NULL` by default. Arguments `scientificName`, `barcode` and
 `catalogNumber` are mutualy excludent, on the other hand, one of the
 them can mixed with all other arguments. See list of arguments below.
 
@@ -146,12 +146,12 @@ them can mixed with all other arguments. See list of arguments below.
 | barcode         | character vector                                                                                        | `c("NY00000001", "FPS00257", "FCM00096")`                           |
 | basisOfRecord   | PreservedSpecimen, LivingSpecimen, FossilSpecimen, HumanObservation, MachineObservation, MaterialSample | c(“PreservedSpecimen”)                                              |
 | collectionCode  | character vector                                                                                        | `c("FIOCRUZ-CEIOC", "UEC", "HUEFS")`                                |
-| catalogNumber   | character vector, embranco, nãobranco                                                                   | `c("435643", "P234576")`                                            |
+| catalogNumber   | character vector, embranco, nãobranco                                                                   | `c("435643", "P234576", "embranco)`                                 |
 | collector       | collector name                                                                                          | `c("Siqueira", "Almeida F")`                                        |
 | collectorNumber | character vector                                                                                        | `c("125", "1897A")`                                                 |
-| yearCollected   | four-digits year `c(1987, 1897, 2016)`                                                                  |                                                                     |
+| yearCollected   | four-digits year                                                                                        | `c(1887, 1897, 2000)`                                               |
 | identifiedBy    | character vector                                                                                        | `c("Siqueira CE")`                                                  |
-| yearIdentified  | four-digits year                                                                                        | `c(1887, 1997, 2015)`                                               |
+| yearIdentified  | four-digits year                                                                                        | `c(1997, 2015)`                                                     |
 | kingdom         | character vector                                                                                        | `c("Plantae", "Animalia", "Fungi")`                                 |
 | phylum          | character vector                                                                                        | `c("Arthropoda", "Nematoda")`                                       |
 | class           | character vector                                                                                        | `c("Reptilia", "Amphibia")`                                         |
@@ -164,7 +164,7 @@ them can mixed with all other arguments. See list of arguments below.
 | stateProvince   | character vector                                                                                        | `c("SP", "Santa Catarina", "MT")`                                   |
 | county          | character vector                                                                                        | `c("São José", "Anitápolis", "Rio Branco")`                         |
 | locality        | character vector                                                                                        | `c("pedra branca", "fazendinha")`                                   |
-| maxRecords      | integer number                                                                                          |                                                                     |
+| maxRecords      | character vector                                                                                        | “5”                                                                 |
 | redlist         | NULL, yes                                                                                               | “yes”                                                               |
 
 <!-- | notes |  character vector    | `c("floresta ombrófila", "flores magentas")` | -->
@@ -172,7 +172,6 @@ them can mixed with all other arguments. See list of arguments below.
 Code examples
 
     # scientific name query 
-
     splinkr_records(scientificName = "Dyckia encholirioides var. rubra")
     #> Warning in names(x) == varNames: comprimento do objeto maior não é múltiplo do
     #> comprimento do objeto menor
@@ -218,7 +217,6 @@ Code examples
     #> #   geoFlag <chr>, imagecode <chr>
 
     # Returns only type species
-
     splinkr_records(scientificName = c("Campylocentrum insulare", "Acianthera saundersiana"), collectionCode = "FLOR", typus = "yes")
     #> # A tibble: 1 x 31
     #>   modified institutionCode collectionCode catalogNumber basisOfRecord kingdom
@@ -238,62 +236,80 @@ A large number of scientific names may be passed but the return may take
 a while, so it possible limit the number of records to return with
 `maxrecords` argument
 
+    # Vector names
+    nomes <- c("Abarema turbinata", "Comolia villosa", "Stylosanthes campestris", 
+    "Vochysia floribunda", "Eugenia platyphylla", "Chaetocalyx acutifolia", 
+    "Actinocephalus ochrocephalus", "Cicuta douglasii", "Annona senegalensis", 
+    "Hexasepalum radula", "Trichosalpinx dura", "Allophylus sericeus", 
+    "Microlicia juniperina", "Campomanesia pubescens", "Luxemburgia ciliosa", 
+    "Dalechampia humilis", "Croton heliotropiifolius", "Senna alata", 
+    "Ipomoea dichotoma", "Arundo donax")
+
+    # Note that maxrecords must be passed as a character (quoted number)
+    splinkr_records(scientificName = nomes, maxrecords = "20")
+
 ### Function `splinkr_images()`
 
-This function can be used to view or download images from specimen
-records. According ([cria.org.br](http://www.cria.org.br/projetos))
-there are more than three million records with images.
+The goal of this function is to provide a relatively quick way to view
+images of collections. According
+([cria.org.br](http://www.cria.org.br/projetos)) there are more than
+three million records with images. Package
+[imager](https://CRAN.R-project.org/package=imager) is used to display
+this images.
+
+In the future an integration with [imageJ](https://imagej.nih.gov/) may
+be provided to download and examine images from specimen records.
 
     # Display image by `imagecode`
-
-    splinkr_images(imagecode = c("FLOR0037759", "UEC190851"))
-
-<div class="figure" style="text-align: center">
-
-<img src="images/imager-display.png" alt="..." width="60%" />
-<p class="caption">
-…
-</p>
-
-</div>
-
-<div class="figure" style="text-align: center">
-
-<img src="images/imager-showimage.png" alt="..." width="60%" />
-<p class="caption">
-…
-</p>
-
-</div>
-
+    splinkr_images(imagecode = c("FLOR0037759", "UEC190851", "FURB53840"))
 
     # Display image by `scientificName`
-
     splinkr_images(scientificName = c("Spigelia insignis", "Anathallis kleinii"))
+
+<div class="figure" style="text-align: center">
+
+<img src="images/imager-display.png" alt="Example of display function from package imager" width="90%" />
+<p class="caption">
+Example of display function from package imager
+</p>
+
+</div>
+
+<div class="figure" style="text-align: center">
+
+<img src="images/imager-showimage.png" alt="Example display function from package imager" width="60%" />
+<p class="caption">
+Example display function from package imager
+</p>
+
+</div>
 
 Combining functions
 ===================
 
+The results of `splinkr_records` can be filtered and passed to
+`splinkr_images` to display images.
 
+    # Load package dplyr
     library(dplyr)
 
+    # View images of genus 'Campylocentrum' from UPCB herbarium
     splinkr_records(scientificName = "Campylocentrum", collectionCode = "UPCB") %>% 
-      select(imagecode) %>% 
+      select(imagecode) %>% # filtering results
       splinkr_images(imagecode = .)
 
 References
 ==========
 
-Data and image source
----------------------
+Data and image sources
+----------------------
 
 CRIA, Centro de Referência em Informação Ambiental. speciesLink API
-v.0.1 beta.
-<a href="https://api.splink.org.br/" class="uri">https://api.splink.org.br/</a>,
+v.0.1 beta. ([api.splink.org.br](https://api.splink.org.br/help)),
 accessed 5.10.2020.
 
 INCT-HVFF, Herbário Virtual da Flora e dos Fungos.
-<a href="http://reflora-cdc.cria.org.br/inct/exsiccatae" class="uri">http://reflora-cdc.cria.org.br/inct/exsiccatae</a>,
+([reflora-cdc.cria.org.br/inct/exsiccatae](http://reflora-cdc.cria.org.br/inct/exsiccatae)),
 accessed 5.10.2020.
 
 Packages
