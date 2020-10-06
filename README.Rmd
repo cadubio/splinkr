@@ -149,11 +149,11 @@ splinkr_images(scientificName = c("Spigelia insignis", "Anathallis kleinii"))
 ```
 
 ```{r echo=FALSE, fig.align='center', fig.cap='Example of display function from package imager', out.width='90%'}
-knitr::include_graphics('docs/images/imager-display.png')
+knitr::include_graphics('images/imager-display.png')
 ```
 
 ```{r echo=FALSE, fig.align='center', fig.cap='Example display function from package imager', out.width='60%'}
-knitr::include_graphics('docs/images/imager-showimage.png')
+knitr::include_graphics('images/imager-showimage.png')
 ```
 
 
