@@ -1,0 +1,22 @@
+Package: splinkr
+Type: Package
+Title: Tools to access the speciesLink network data and images
+Version: 0.1.0
+Author: Carlos Eduardo de Siqueira
+Maintainer: Carlos Eduardo de Siqueira <cadu@e.email>
+Description: This package provide access to speciesLink, a collaborative network that includes the participation of hundreds of biological collections in the country and abroad, whose main objective is to give access to anyone interested in the data about the records held by collections, and observation data (from: http://www.cria.org.br/projetos). 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr,
+    dplyr,
+    purrr,
+    imager,
+    XML,
+    xml2,
+    tibble,
+    graphics
