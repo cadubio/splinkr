@@ -1,6 +1,6 @@
 Package: splinkr
 Type: Package
-Title: Connect R Enviroment to SpeciesLink Network
+Title: Connect R environment to speciesLink network
 Version: 0.1.0
 Authors@R: person(given = "Carlos Eduardo", 
                    family = "Siqueira",
