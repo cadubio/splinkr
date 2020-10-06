@@ -27,7 +27,10 @@ This package uses CRIA *species*Link API v.0.1 beta ([CRIA](https://api.splink.o
 
 You can install the released version of `splinkr` from [GitHub](https://github.org/cadubio/splinkr) with:
 
-    remotes::install_github("cadubio/splinkr")
+```{r install}
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("cadubio/splinkr")
+```
 
 ## Usage
 
