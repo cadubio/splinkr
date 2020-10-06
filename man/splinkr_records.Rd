@@ -26,7 +26,7 @@ splinkr_records(
   county = NULL,
   locality = NULL,
   redlist = NULL,
-  maxRecords = NULL
+  maxrecords = NULL
 )
 }
 \arguments{
@@ -72,7 +72,7 @@ splinkr_records(
 
 \item{redlist}{If "yes" return only taxa in Portaria MMA 443/2014}
 
-\item{maxRecords}{Integer number to restrict number of records to return}
+\item{maxrecords}{Character vector to restrict number of records to return}
 }
 \value{
 `data.frame()` with the records

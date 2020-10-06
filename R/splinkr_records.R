@@ -69,13 +69,13 @@ splinkr_records <- function(scientificName = NULL,
                        redlist = NULL,
                        maxrecords = NULL
                        ) {
-    # if (is.null(scientificName) && is.null(barcode) && is.null(catalogNumber)) {
-    #   stop("Error in records operation: Value to argument 'scientificName', 'barcode' and 'catalogNumber' cannot be NULL.\n \tAt least a single (Genus) or binomial (Genus epiteth) name \nor barcode or catalogNumber must be informed.")
-    # } else
+    if (is.null(scientificName) && is.null(barcode) && is.null(catalogNumber)) {
+     stop("Error: Value to argument 'scientificName', 'barcode' and 'catalogNumber' cannot be NULL.\n \tAt least a single (Genus) or binomial (Genus epiteth) name \nor barcode or catalogNumber must be informed.")
+     } else
     # *scientificName*, *barcode* and *catalogNumber* are mutual excludent arguments
     # *catalogNumber*
     if ((!is.null(scientificName) && !is.null(barcode)) || (!is.null(scientificName) && !is.null(catalogNumber)) || (!is.null(barcode) && !is.null(catalogNumber))) {
-      stop("Error in records operation: *scientificName*, *barcode* and *catalogNumber* are mutual excludent arguments. Choose just one of them!")
+      stop("Error: *scientificName*, *barcode* and *catalogNumber* are mutual excludent arguments. Choose just one of them!")
     }
     else
       if (!is.null(barcode)) {
