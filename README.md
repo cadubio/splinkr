@@ -26,7 +26,8 @@ Installation
 You can install the released version of `splinkr` from
 [GitHub](https://github.org/cadubio/splinkr) with:
 
-    remotes::install_github("cadubio/splinkr")
+    if (!require(devtools)) install.packages("devtools")
+    devtools::install_github("cadubio/splinkr")
 
 Usage
 -----
@@ -35,7 +36,6 @@ There are tree functions in package: `splinkr_datasets`*,*
 `splinkr_records` and `splinkr_images`.
 
     # load package
-
     library(splinkr)
 
 ### Function `splinkr_datasets()`
