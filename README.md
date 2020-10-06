@@ -7,7 +7,7 @@ Package *sp*linkr
 <!-- badges: start -->
 <!-- badges: end -->
 
-The purpose of this package is to connect the `R` environment to
+The purpose of this package is to connect `R` environment to
 *species*Link, a collaborative network that includes the participation
 of hundreds of biological collections in Brazil and abroad, whose main
 objective is to give access to anyone interested in the data about the
@@ -298,11 +298,8 @@ The results of `splinkr_records` can be filtered and passed to
       select(imagecode) %>% # filtering results
       splinkr_images(imagecode = .)
 
-References
-==========
-
 Data and image sources
-----------------------
+======================
 
 CRIA, Centro de Referência em Informação Ambiental. speciesLink API
 v.0.1 beta. ([api.splink.org.br](https://api.splink.org.br/help)),
@@ -312,8 +309,8 @@ INCT-HVFF, Herbário Virtual da Flora e dos Fungos.
 ([reflora-cdc.cria.org.br/inct/exsiccatae](http://reflora-cdc.cria.org.br/inct/exsiccatae)),
 accessed 5.10.2020.
 
-Packages
---------
+Packages used in this project
+-----------------------------
 
 Duncan Temple Lang (2020). XML: Tools for Parsing and Generating XML
 Within R and S-Plus. R package version 3.99-0.5.
@@ -323,7 +320,7 @@ Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2020).
 `dplyr`: A Grammar of Data Manipulation. R package version 1.0.2.
 ([CRAN](https://CRAN.R-project.org/package=dplyr))
 
-Hadley Wickham, Jim Hester and Jeroen Ooms (2020). xml2: Parse XML. R
+Hadley Wickham, Jim Hester and Jeroen Ooms (2020). `xml2`: Parse XML. R
 package version 1.3.2. ([CRAN](https://CRAN.R-project.org/package=xml2))
 
 Kirill Müller and Hadley Wickham (2020). `tibble`: Simple Data Frames. R
@@ -333,10 +330,6 @@ package version 3.0.3.
 Lionel Henry and Hadley Wickham (2020). `purrr`: Functional Programming
 Tools. R package version 0.3.4.
 ([CRAN](https://CRAN.R-project.org/package=purrr))
-
-`R` Core Team (2020). `R`: A language and environment for statistical
-computing. R Foundation for Statistical Computing, Vienna, Austria.
-([R-project](https://www.R-project.org))
 
 Simon Barthelme (2020). `imager`: Image Processing Library Based on
 ‘CImg’. R package version 0.42.3.

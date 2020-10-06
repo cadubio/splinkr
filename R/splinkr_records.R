@@ -34,12 +34,12 @@
 #' # Searching taxon
 #' splinkr_records(scientificName = "Dyckia encholirioides var. rubra")
 #'
-#' # Searching taxa collected by collector
+#' # Searching taxa collected by collector...
 #' splinkr_records(scientificName = c("Anathallis kleinii",
 #'                                    "Anathallis microphyta"),
 #'                 collector = "Siqueira")
 #'
-#' # Searching all types from
+#' # Searching all type specimens from
 #' # one collection
 #' splinkr_records(collectionCode = "FLOR", typus = "yes")
 #'
