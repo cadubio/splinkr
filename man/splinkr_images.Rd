@@ -7,13 +7,15 @@
 splinkr_images(imagecode = NULL, scientificName = NULL, path)
 }
 \arguments{
-\item{imagecode}{carachter vector containing image codes}
+\item{imagecode}{Carachter vector containing image codes}
 
-\item{scientificName}{character vector containing one or more single or compound names, without authors}
+\item{scientificName}{Character vector containing one or more single or compound names, without authors}
+
+\item{path}{Path to save image (not implemented yet)}
 }
 \description{
 This function allows viewing the records of the speciesLink network with images.
-Can also download the images.
+Future plains to download the images.
 }
 \examples{
 \dontrun{

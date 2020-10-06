@@ -1,10 +1,11 @@
 #' Display or download image records
 #'
 #' This function allows viewing the records of the speciesLink network with images.
-#' Can also download the images.
+#' Future plains to download the images.
 #'
-#' @param imagecode carachter vector containing image codes
-#' @param scientificName character vector containing one or more single or compound names, without authors
+#' @param imagecode Carachter vector containing image codes
+#' @param scientificName Character vector containing one or more single or compound names, without authors
+#' @param path Path to save image (not implemented yet)
 #'
 #' @export
 #'

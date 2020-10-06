@@ -75,7 +75,7 @@ splinkr_records(
 \item{maxrecords}{Character vector to restrict number of records to return}
 }
 \value{
-`data.frame()` with the records
+\code{data.frame()} with the records
 }
 \description{
 This function returns the search results from speciesLink network records.

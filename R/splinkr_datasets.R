@@ -1,24 +1,24 @@
 #' Read speciesLink datasets
 #'
-#' Returns a list of all or filtered datasets available in the speciesLink for searching.
+#' Returns a `tibble` with all or filtered datasets available in the speciesLink for searching.
 #'
-#' @param filter character vector containing one or more terms to filter datasets
+#' @param filter Character vector containing one or more terms to filter datasets
 #'
 #' @return `data.frame()` with the datasets
+#'
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#'
 #' # return all datasets
 #' splinkr_datasets()
 #'
-#' # Filtering datasets
-#' # The terms order defines filtering
-#' # The second term will be searched for in the subset of datasets established
-#' by the first term. The third term will be searched for in the (sub)subset of
+#' # Filtering datasets. Terms order defines filtering
+#' # The second term will be searched in subset of datasets created
+#' by the first term. The third term will be searched in the (sub)subset of
 #' the second term and so on.
 #' splinkr_datasets(filter = c("universidade", "xiloteca", "Brasil"))
-#' }
+#'
 splinkr_datasets <- function(filter = NULL) {
   # Creata a dataset from especiesLink datasets ------------------
   # especiesLink datasets
