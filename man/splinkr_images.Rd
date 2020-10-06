@@ -18,7 +18,6 @@ This function allows viewing the records of the speciesLink network with images.
 Future plains to download the images.
 }
 \examples{
-\dontrun{
 # Display image by image codes
 splinkr_images(imagecode = "FLOR0037759")
 
@@ -26,5 +25,5 @@ splinkr_images(imagecode = c("FLOR0037759", "UEC190851"))
 
 # Display image by scientific names
 splinkr_images(scientificName = c("Spigelia insignis", "Anathallis kleinii"))
-}
+
 }

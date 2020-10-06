@@ -268,7 +268,7 @@ be provided to download and examine images from specimen records.
 
 <div class="figure" style="text-align: center">
 
-<img src="images/imager-display.png" alt="Example of display function from package imager" width="90%" />
+<img src="docs/images/imager-display.png" alt="Example of display function from package imager" width="90%" />
 <p class="caption">
 Example of display function from package imager
 </p>
@@ -277,7 +277,7 @@ Example of display function from package imager
 
 <div class="figure" style="text-align: center">
 
-<img src="images/imager-showimage.png" alt="Example display function from package imager" width="60%" />
+<img src="docs/images/imager-showimage.png" alt="Example display function from package imager" width="60%" />
 <p class="caption">
 Example display function from package imager
 </p>

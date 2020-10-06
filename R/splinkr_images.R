@@ -10,7 +10,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Display image by image codes
 #' splinkr_images(imagecode = "FLOR0037759")
 #'
@@ -18,7 +17,7 @@
 #'
 #' # Display image by scientific names
 #' splinkr_images(scientificName = c("Spigelia insignis", "Anathallis kleinii"))
-#' }
+#'
 splinkr_images <- function(imagecode = NULL,
                            scientificName = NULL,
                            path) {
