@@ -13,10 +13,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Package *sp*linkr
+# *sp*linkr
 
 <!-- badges: start -->
-
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The purpose of this package is to connect `R` environment to *species*Link, a collaborative network that includes the participation of hundreds of biological collections in Brazil and abroad, whose main objective is to give access to anyone interested in the data about the records held by collections, and observation data ([cria.org.br](http://www.cria.org.br/projetos)).
