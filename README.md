@@ -287,11 +287,11 @@ Example display function from package imager
 
 </div>
 
-Combining functions
-===================
+Using pipe
+==========
 
-The results of `splinkr_records` can be filtered and passed to
-`splinkr_images` to display images.
+The results of `splinkr_records` can be filtered and passed via `%>%`
+(pipe) to `splinkr_images` to display images.
 
     # Load package dplyr
     library(dplyr)
