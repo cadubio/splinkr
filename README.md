@@ -290,15 +290,11 @@ Example display function from package imager
 Using pipe
 ==========
 
-The results of `splinkr_records` can be filtered and passed via `%>%`
-(pipe) to `splinkr_images` to display images.
-
-    # Load package dplyr
-    library(dplyr)
+The results of `splinkr_records` can be passed via `%>%` (pipe) to
+`splinkr_images` to display images.
 
     # View images of genus 'Campylocentrum' from UPCB herbarium
     splinkr_records(scientificName = "Campylocentrum", collectionCode = "UPCB") %>% 
-      select(imagecode) %>% # filtering results
       splinkr_images(imagecode = .)
 
 Data and image sources

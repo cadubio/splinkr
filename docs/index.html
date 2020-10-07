@@ -405,14 +405,10 @@ Example display function from package imager
 <div id="using-pipe" class="section level1">
 <h1 class="hasAnchor">
 <a href="#using-pipe" class="anchor"></a>Using pipe</h1>
-<p>The results of <code>splinkr_records</code> can be filtered and passed via <code><a href="reference/%&gt;%.html">%&gt;%</a></code> (pipe) to <code>splinkr_images</code> to display images.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co"># Load package dplyr</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="co"># View images of genus 'Campylocentrum' from UPCB herbarium</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a><span class="kw">splinkr_records</span>(<span class="dt">scientificName =</span> <span class="st">"Campylocentrum"</span>, <span class="dt">collectionCode =</span> <span class="st">"UPCB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a><span class="st">  </span><span class="kw">select</span>(imagecode) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># filtering results</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a><span class="st">  </span><span class="kw">splinkr_images</span>(<span class="dt">imagecode =</span> .)</span></code></pre></div>
+<p>The results of <code>splinkr_records</code> can be passed via <code><a href="reference/%&gt;%.html">%&gt;%</a></code> (pipe) to <code>splinkr_images</code> to display images.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co"># View images of genus 'Campylocentrum' from UPCB herbarium</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="kw">splinkr_records</span>(<span class="dt">scientificName =</span> <span class="st">"Campylocentrum"</span>, <span class="dt">collectionCode =</span> <span class="st">"UPCB"</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="st">  </span><span class="kw">splinkr_images</span>(<span class="dt">imagecode =</span> .)</span></code></pre></div>
 </div>
 <div id="data-and-image-sources" class="section level1">
 <h1 class="hasAnchor">

@@ -5,7 +5,7 @@
 #'
 #' @param imagecode Carachter vector containing image codes
 #' @param scientificName Character vector containing one or more single or compound names, without authors
-#' @param path Path to save image (not implemented yet)
+#' @param path Path to save image(s) (not implemented)
 #'
 #' @export
 #'
@@ -33,38 +33,49 @@ splinkr_images <- function(imagecode = NULL,
   # imagecodes
   image_codes <- df %>%
     dplyr::select(scientificName, imagecode) %>%
-    dplyr::mutate(compr = nchar(imagecode)) %>%
-    dplyr::filter(compr < 12, !is.na(imagecode)) %>%
+    dplyr::filter(nchar(imagecode) < 12, !is.na(imagecode)) %>%
     dplyr::select(imagecode)
 
   # text names saved in images
   image_names <- df %>%
     dplyr::select(scientificName, imagecode) %>%
-    dplyr::mutate(compr = nchar(imagecode)) %>%
-    dplyr::filter(compr < 12, !is.na(imagecode)) %>%
+    dplyr::filter(nchar(imagecode) < 12, !is.na(imagecode)) %>%
     dplyr::select(scientificName) %>%
     split(., seq(nrow(.)))
     }
 
     if (!is.null(imagecode)) {
-      image_codes <- imagecode %>%
-        dplyr::mutate(compr = nchar(imagecode)) %>%
-        dplyr::filter(compr < 12, !is.na(imagecode)) %>%
-        dplyr::select(imagecode)
 
-      vector_barcodes <- sapply(image_codes, FUN = paste0, collapse = "/", simplify = TRUE)
-      url_base <- paste0("https://api.splink.org.br/records/format/xml/barcode/",
-                         vector_barcodes)
-      read_splink <- xml2::read_xml(url_base)
-      url_parsed <- XML::xmlParse(read_splink)
-      splink_records <- XML::xmlToDataFrame(nodes = XML::getNodeSet(url_parsed, "//record"))
+      if (class(imagecode)[1] != "tbl_df") {
 
-      image_names <- splink_records %>%
-        dplyr::select(scientificName, imagecode) %>%
-        dplyr::mutate(compr = nchar(imagecode)) %>%
-        dplyr::filter(compr < 12, !is.na(imagecode)) %>%
-        dplyr::select(scientificName) %>%
-        split(., seq(nrow(.)))
+        image_codes <-imagecode %>%
+          tibble::as_tibble() %>%
+          dplyr::filter(nchar(value) < 12, !is.na(value))
+
+        vector_barcodes <- sapply(image_codes, FUN = paste0, collapse = "/", simplify = TRUE)
+        url_base <- paste0("https://api.splink.org.br/records/format/xml/barcode/",
+                           vector_barcodes)
+        read_splink <- xml2::read_xml(url_base)
+        url_parsed <- XML::xmlParse(read_splink)
+        splink_records <- XML::xmlToDataFrame(nodes = XML::getNodeSet(url_parsed, "//record"))
+
+        image_names <- splink_records %>%
+          dplyr::select(scientificName, imagecode) %>%
+          dplyr::filter(nchar(imagecode) < 12, !is.na(imagecode)) %>%
+          dplyr::select(scientificName) %>%
+          split(., seq(nrow(.)))
+        }
+      else {
+        image_codes <- imagecode %>%
+          dplyr::filter(!is.na(imagecode)) %>%
+          dplyr::select(imagecode) %>%
+          dplyr::mutate(imagecode = stringr::word(imagecode, end = 1))
+
+        image_names <- imagecode %>%
+          dplyr::filter(!is.na(imagecode)) %>%
+          dplyr::select(scientificName)
+
+      }
     }
   }
 
@@ -76,8 +87,8 @@ splinkr_images <- function(imagecode = NULL,
   # Add names to images
   image_list <- purrr::pmap(list(image_imlist, image_names),
                            function (x, y)
-                            imager::implot(x, graphics::text(150, 80, labels = y, cex = 1, col = "red")))
+                            imager::implot(x, graphics::text(100, 80, labels = y, cex = 1, col = "red")))
 
   # Show images
-  imager::display(image_list)
+   imager::display(image_list)
 }

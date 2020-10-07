@@ -159,14 +159,10 @@ knitr::include_graphics('images/imager-showimage.png')
 
 # Using pipe 
 
-The results of `splinkr_records` can be filtered and passed via `%>%` (pipe) to `splinkr_images` to display images.
+The results of `splinkr_records` can be passed via `%>%` (pipe) to `splinkr_images` to display images.
 ```{r combining, eval=FALSE, include=TRUE}
-# Load package dplyr
-library(dplyr)
-
 # View images of genus 'Campylocentrum' from UPCB herbarium
 splinkr_records(scientificName = "Campylocentrum", collectionCode = "UPCB") %>% 
-  select(imagecode) %>% # filtering results
   splinkr_images(imagecode = .)
 ```
 

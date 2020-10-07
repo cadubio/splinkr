@@ -11,7 +11,7 @@ splinkr_images(imagecode = NULL, scientificName = NULL, path)
 
 \item{scientificName}{Character vector containing one or more single or compound names, without authors}
 
-\item{path}{Path to save image (not implemented yet)}
+\item{path}{Path to save image(s) (not implemented)}
 }
 \description{
 This function allows viewing the records of the speciesLink network with images.
